@@ -1,0 +1,511 @@
+/* ---------- Renkler ve ölçüler ---------- */
+
+:root {
+  --bg: #F2F4F3;
+  --ink: #18212B;
+  --muted: #5A6570;
+  --line: #D3D9D8;
+
+  /* T568B tel renkleri */
+  --w-white: #FBFBF8;
+  --w-orange: #E5752A;
+  --w-green: #2F9A57;
+  --w-blue: #2E6BCB;
+  --w-brown: #7E5235;
+
+  --jacket: #8E9CA7;
+  --jacket-text: rgba(255, 255, 255, 0.8);
+  --plug: rgba(196, 214, 222, 0.45);
+  --plug-edge: #A9BAC3;
+  --pin: #C9A23A;
+
+  --maxw: 68rem;
+  --gutter: clamp(1rem, 5vw, 3rem);
+  --wire-h: 7px;
+  --wire-gap: 2px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161C22;
+    --ink: #E6EBEE;
+    --muted: #98A4AE;
+    --line: #2B353F;
+
+    --w-white: #E9ECEA;
+    --jacket: #4B5865;
+    --jacket-text: rgba(255, 255, 255, 0.55);
+    --plug: rgba(170, 195, 208, 0.16);
+    --plug-edge: #5C6F7C;
+  }
+}
+
+/* ---------- Temel ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-color: var(--w-orange);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--w-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--w-orange);
+  color: #fff;
+}
+
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ---------- Menü ---------- */
+
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.menu__list {
+  list-style: none;
+  margin-block: 0;
+  padding-block: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Butonun başındaki nokta: bölümün tel rengi */
+.btn::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c);
+}
+
+.btn:hover {
+  border-color: var(--c);
+  background: color-mix(in srgb, var(--c) 14%, transparent);
+}
+
+.btn--orange { --c: var(--w-orange); }
+.btn--green { --c: var(--w-green); }
+.btn--blue { --c: var(--w-blue); }
+
+/* ---------- Giriş ---------- */
+
+.hero {
+  padding-top: clamp(3rem, 10vw, 7rem);
+  padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.name {
+  font-size: clamp(3.5rem, 18vw, 9rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin-top: 1.75rem;
+  max-width: 34ch;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  line-height: 1.5;
+}
+
+.caption {
+  margin-top: 0.875rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* ---------- Kablo ---------- */
+
+.cable {
+  --stack: calc(8 * var(--wire-h) + 7 * var(--wire-gap));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(8rem, 34%) auto;
+  align-items: center;
+  margin-top: clamp(2.5rem, 7vw, 4.5rem);
+  padding-right: max(var(--gutter), calc((100% - var(--maxw)) / 2 + var(--gutter)));
+}
+
+.cable__jacket {
+  position: relative;
+  z-index: 2;
+  height: calc(var(--stack) + 18px);
+  background: var(--jacket);
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+  overflow: hidden;
+}
+
+.cable__jacket span {
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  color: var(--jacket-text);
+  white-space: nowrap;
+}
+
+.cable__wires {
+  display: grid;
+  gap: var(--wire-gap);
+  margin-left: -14px;
+  position: relative;
+  z-index: 1;
+}
+
+.wire {
+  display: block;
+  height: var(--wire-h);
+  border-radius: 999px;
+  background: var(--c);
+}
+
+/* Beyaz-renkli teller: beyaz zemin üzerinde renkli şerit */
+.wire--1,
+.wire--3,
+.wire--5,
+.wire--7 {
+  background: repeating-linear-gradient(110deg, var(--w-white) 0 12px, var(--c) 12px 18px);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.wire--1, .wire--2 { --c: var(--w-orange); }
+.wire--3, .wire--6 { --c: var(--w-green); }
+.wire--4, .wire--5 { --c: var(--w-blue); }
+.wire--7, .wire--8 { --c: var(--w-brown); }
+
+.plug {
+  position: relative;
+  z-index: 3;
+  width: 7.5rem;
+  height: calc(var(--stack) + 26px);
+  margin-left: -3.5rem;
+  display: grid;
+  align-content: center;
+  justify-items: end;
+  gap: var(--wire-gap);
+  padding-right: 10px;
+  background: var(--plug);
+  border: 2px solid var(--plug-edge);
+  border-radius: 6px 14px 14px 6px;
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+}
+
+/* Konnektörün kilit dili */
+.plug::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 1rem;
+  width: 4.25rem;
+  height: 12px;
+  border: 2px solid var(--plug-edge);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: var(--plug);
+}
+
+.pin {
+  display: block;
+  width: 1.4rem;
+  height: var(--wire-h);
+  border-radius: 1px;
+  background: linear-gradient(180deg, #E8CC74, var(--pin));
+}
+
+/* ---------- Bölümler ---------- */
+
+.block {
+  display: grid;
+  gap: 1.25rem;
+  padding-block: 3.5rem;
+  border-top: 1px solid var(--line);
+  /* Butona basınca başlık menünün altında kalmasın */
+  scroll-margin-top: 4rem;
+}
+
+.block h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-stretch: 112%;
+  line-height: 1.2;
+}
+
+.block__body {
+  max-width: 62ch;
+}
+
+.block__body p + p {
+  margin-top: 1rem;
+}
+
+@media (min-width: 760px) {
+  .block {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: 2rem;
+    padding-block: 4.5rem;
+  }
+}
+
+/* ---------- Eğitim yolu ---------- */
+
+.route {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hop {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  column-gap: 1.25rem;
+  padding-bottom: 2.75rem;
+}
+
+.hop:last-child {
+  padding-bottom: 0;
+}
+
+/* Duraklar arasındaki bağlantı: dört tel çifti */
+.hop:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(1.5rem - 5px);
+  top: 3.25rem;
+  bottom: 0.75rem;
+  width: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,
+    var(--w-orange) 0 25%,
+    var(--w-green) 25% 50%,
+    var(--w-blue) 50% 75%,
+    var(--w-brown) 75%);
+}
+
+.hop__n {
+  font-size: 2.25rem;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.hop h3 {
+  font-size: 1.3125rem;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.hop__what {
+  margin-top: 0.375rem;
+}
+
+.hop__meta {
+  margin-top: 0.125rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* Telefonda logo yazının üstünde, geniş ekranda solunda durur */
+.hop__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* Logolar beyaz zeminli olduğu için koyu temada da beyaz kutuda durur */
+.hop__logo {
+  flex: none;
+  width: 5.5rem;
+  height: 5.5rem;
+  padding: 0.375rem;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.hop__text {
+  min-width: 0;
+}
+
+@media (min-width: 560px) {
+  .hop__body {
+    flex-direction: row;
+    gap: 1.25rem;
+  }
+}
+
+/* ---------- Diller ---------- */
+
+.langs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 2rem;
+}
+
+.lang {
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  font-weight: 750;
+  font-stretch: 115%;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.lang--here::after,
+.dot {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--w-orange);
+}
+
+.lang--here::after {
+  margin-left: 0.2rem;
+  vertical-align: top;
+  margin-top: 0.35em;
+}
+
+.note {
+  margin-top: 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+.note .dot {
+  margin-right: 0.5rem;
+  vertical-align: 0.1em;
+}
+
+/* ---------- Alt bilgi ---------- */
+
+.foot {
+  border-top: 1px solid var(--line);
+}
+
+.foot__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  padding-block: 2rem 2.5rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
+/* ---------- Küçük ekranlar ---------- */
+
+@media (max-width: 559px) {
+  :root {
+    --wire-h: 5px;
+  }
+
+  .cable {
+    grid-template-columns: minmax(0, 1fr) minmax(5rem, 42%) auto;
+  }
+
+  .cable__jacket span {
+    display: none;
+  }
+
+  .plug {
+    width: 5.5rem;
+    margin-left: -2.5rem;
+  }
+
+  .plug::before {
+    width: 3rem;
+    left: 0.75rem;
+  }
+
+  .pin {
+    width: 1rem;
+  }
+
+  .menu__list {
+    gap: 0.375rem;
+  }
+
+  .btn {
+    gap: 0.375rem;
+    padding: 0.4375rem 0.625rem;
+    font-size: 0.875rem;
+  }
+}

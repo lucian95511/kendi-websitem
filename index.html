@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Umut Biçer</title>
+  <meta name="description" content="Umut Biçer'in kişisel sayfası. Bilgisayar Programcılığı öğrencisi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Başlıklara giden butonlar: her biri bir bölümün id'sine bağlanır -->
+  <nav class="menu" aria-label="Bölümler">
+    <ul class="wrap menu__list">
+      <li><a class="btn btn--orange" href="#hakkimda">Hakkımda</a></li>
+      <li><a class="btn btn--green" href="#egitim">Eğitim</a></li>
+      <li><a class="btn btn--blue" href="#diller">Bildiğim diller</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="name">Umut<br>Biçer</h1>
+      <p class="lede">Bilgisayar Programcılığı öğrencisiyim. Lisede ağ sistemleri okudum, şimdi yazılım geliştirmeyi öğreniyorum.</p>
+    </div>
+
+    <!-- RJ45 kablo çizimi: dış kılıf, T568B sırasıyla 8 tel ve konnektör -->
+    <div class="cable" aria-hidden="true">
+      <div class="cable__jacket"><span>CAT6 U/UTP 4x2xAWG23</span></div>
+      <div class="cable__wires">
+        <span class="wire wire--1"></span>
+        <span class="wire wire--2"></span>
+        <span class="wire wire--3"></span>
+        <span class="wire wire--4"></span>
+        <span class="wire wire--5"></span>
+        <span class="wire wire--6"></span>
+        <span class="wire wire--7"></span>
+        <span class="wire wire--8"></span>
+      </div>
+      <div class="plug">
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+        <span class="pin"></span>
+      </div>
+    </div>
+    <p class="wrap caption">T568B dizilimi: beyaz-turuncu, turuncu, beyaz-yeşil, mavi, beyaz-mavi, yeşil, beyaz-kahverengi, kahverengi.</p>
+  </header>
+
+  <main class="wrap">
+
+    <section class="block" id="hakkimda">
+      <h2>Hakkımda</h2>
+      <div class="block__body">
+        <p>12 Mart 2008'de doğdum. Lüleburgaz Mesleki ve Teknik Anadolu Lisesi'nde Ağ Sistemleri okudum ve bilgisayarların birbirine nasıl bağlandığını orada öğrendim.</p>
+        <p>Şimdi Burdur Mehmet Akif Ersoy Üniversitesi Ağlasun Meslek Yüksekokulu'nda Bilgisayar Programcılığı okuyorum. Ağın üzerinde çalışan yazılımları yazmayı öğreniyorum.</p>
+      </div>
+    </section>
+
+    <section class="block" id="egitim">
+      <h2>Eğitim</h2>
+      <ol class="route">
+        <li class="hop">
+          <span class="hop__n">1</span>
+          <div class="hop__body">
+            <img class="hop__logo" src="img/lise.webp" alt="Lüleburgaz Mesleki ve Teknik Anadolu Lisesi logosu" width="88" height="88">
+            <div class="hop__text">
+              <h3>Lüleburgaz Mesleki ve Teknik Anadolu Lisesi</h3>
+              <p class="hop__what">Ağ Sistemleri</p>
+              <p class="hop__meta">Lise, Lüleburgaz / Kırklareli</p>
+            </div>
+          </div>
+        </li>
+        <li class="hop">
+          <span class="hop__n">2</span>
+          <div class="hop__body">
+            <img class="hop__logo" src="img/universite.jpg" alt="Burdur Mehmet Akif Ersoy Üniversitesi Ağlasun Meslek Yüksekokulu logosu" width="88" height="88">
+            <div class="hop__text">
+              <h3>Burdur Mehmet Akif Ersoy Üniversitesi, Ağlasun Meslek Yüksekokulu</h3>
+              <p class="hop__what">Bilgisayar Programcılığı</p>
+              <p class="hop__meta">Ön lisans, devam ediyor. Ağlasun / Burdur</p>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="block" id="diller">
+      <h2>Bildiğim diller</h2>
+      <div class="block__body">
+        <ul class="langs">
+          <li class="lang lang--here">HTML</li>
+          <li class="lang lang--here">CSS</li>
+          <li class="lang">C++</li>
+          <li class="lang">Python</li>
+          <li class="lang">C#</li>
+        </ul>
+        <p class="note"><span class="dot"></span>İşaretli olanlarla yazıldı: bu sayfada yalnızca HTML ve CSS kullanıldı.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__inner">
+      <p>Umut Biçer, 2026</p>
+    </div>
+  </footer>
+
+</body>
+</html>
